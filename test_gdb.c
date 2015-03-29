@@ -19,7 +19,10 @@ int main(){
 	int *array[100]; 	// array : 
 	int (*array2)[100]; 	// array2 :
 
-	char *str1[100];
+	char *str1[100];	// str1[100] : 
+				// str1	     :
+				
+
 	char *(*str)[100]; 	// str 	 :
 
 
