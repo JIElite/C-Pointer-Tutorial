@@ -6,6 +6,8 @@
 
 
 
+
+
 #include<stdio.h>
 
 int main(){ 
@@ -16,14 +18,10 @@ int main(){
 
 	int *array[100]; 	// array : 
 	int (*array2)[100]; 	// array2 :
-	
+
+	char *str1[100];
 	char *(*str)[100]; 	// str 	 :
 
-	void *comp();		// comp  :
-
-	void (*comp2)();	// comp2 :
-
-	char (*(*x())[])(); 	// x     :
 
 	return 0;
 }
