@@ -45,7 +45,7 @@ int main()
 	string_Table[3][10] = 't';
 	string_Table[3][11] = 'e';
 	*/
-	strncpy(&string[3][8], "hate", 4);
+	strncpy(string_Table[3] + 8, "hate", 4);
 
 
 	printf("\nAfter changing the string : \n");
