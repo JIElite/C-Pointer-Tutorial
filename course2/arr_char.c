@@ -11,10 +11,10 @@
  *
  * 	3. 因為是用 array裡面在裝一個array( 2-dimension array)
  * 	   的方式編寫，string literal就變成可以更改的情況了!!
- * 	   極度危險
- */
+ * 	   極度危險，解決方法：使用 const ，但是仍然會浪費空間！
+  */
 
-void show_string_table(char (*string)[30], int number_of_string)
+void show_string_table(const char (*string)[30], const int number_of_string)
 {
 	int i;
 

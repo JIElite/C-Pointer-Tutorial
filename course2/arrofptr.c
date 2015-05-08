@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 
-/* ¸Ä³ÉÏÂÃæß@·NĞÎÊ½áá£¬¾Í›]ÓĞÖ®Ç°µÄ†–î}ÁË
- * ²»ƒHÔö¼ÓÁË”U³äĞÔ£¬ì`»îĞÔ¡£Ò²¸ü¼Ó°²È«£¡
+/* æ”¹æˆä¸‹é¢é€™ç¨®å½¢å¼å¾Œï¼Œå°±æ²’æœ‰ä¹‹å‰çš„å•é¡Œäº†
+ * ä¸åƒ…å¢åŠ äº†æ“´å……æ€§ï¼Œéˆæ´»æ€§ã€‚ä¹Ÿæ›´åŠ å®‰å…¨ï¼
  */
 
 void show_string_table(char **string, int number_of_string)
@@ -20,14 +20,14 @@ int main()
 {
 
 	char *string[5] = 
-		{
+			{
 				"hello world",
 				"This is a good news!",
 				"I'm from Taiwan.",
 				"Nice to meet you~!",
 				"abcdefghijklmnopqrstuvwxyz"
 				
-		};
+			};
 
 	/* ERROR !! */
 	//string[0][1] = 'a';
@@ -36,7 +36,4 @@ int main()
 	//strncpy(string[3] + 8, "hate", 4);
 	show_string_table(string, 5);	
 }
-
-
-
 
