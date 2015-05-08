@@ -28,7 +28,6 @@ int main()
 	printf("ptr    : %p\n", ptr);
 	printf("ptr + 1: %p\n", ptr + 1);
 	printf("address of ptr : %p\n\n", &ptr);
-	free(ptr);
 
 
 	/* 觀察下面的情況, 有助於理解上面指標+1的變化*/
@@ -41,9 +40,13 @@ int main()
 	printf("ptr_to_int     : %p\n", ptr_to_int);
 	printf("ptr_to_int + 1 : %p\n\n", ptr_to_int + 1);
 
+	
+	free(ptr_to_int);
+	free(ptr_to_double);
+	free(ptr);
 
 
-
+	
 
 	/* 你覺得為什麼下面的情況 和上面不一樣？ 
 	 * 同樣的以記憶的的角度分析

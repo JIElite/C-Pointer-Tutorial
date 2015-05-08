@@ -1,64 +1,54 @@
-/* 
- * Array 的名稱他指示出第一個元素的位址
- * pointer 在做++的動作的時候，是針對指向的資料型態做加減
- * 動態分配空間的時候，那個空間是在heap, 但是我們仍然宣告指標變數在stack
- * 像是:
- *		int *ptr = malloc(sizeof(int) * 100);
- *		藉由 malloc 我們向記憶體中的heap區段要取了 sizeof(int) * 100 這樣大小的空間
- *		但是ptr這個變數是存在哪裡呢？ 這個變數是存放在stack的!
+/*
+ * using this picture to illustrate concept : 
+ * http://pananq.com/wp-content/uploads/2012/05/merge-relocation-obj.png
  *
  */
-
 
 
 #include<stdio.h>
 #include<stdlib.h>
 
 
+int global_data_bss;
+int initilized_var = 10;
+static int global_static_data;
+
+
 int main()
 {
+	const int *ptr;
+	const int const_num = 10;
+	ptr = &const_num;
+	printf("address of const int data : \t\t%p\n", ptr);
 
-
-	int(*ptr)[4] = malloc(sizeof(int) * 10);
-	printf("\nsizeof *ptr : %zu\n", sizeof(*ptr));
+	int *ptr_dynamic = malloc(sizeof(int));
+	printf("address of dynamic data : \t\t%p\n", ptr_dynamic);
 	
-	/* 試著說明 ptr + 1 記憶體位址的行為 
-	 * &ptr 和  ptr 的差別是什麼? ( hint : 觀察數值後 請以記憶體heap, stack 去思考 )
-	 */
-	printf("ptr    : %p\n", ptr);
-	printf("ptr + 1: %p\n", ptr + 1);
-	printf("address of ptr : %p\n\n", &ptr);
-	free(ptr);
+	int *ptr_to_global = &global_data_bss;
+	printf("address of global_data_bss : \t\t%p\n", ptr_to_global);
 
 
-	/* 觀察下面的情況, 有助於理解上面指標+1的變化*/
-	double	(*ptr_to_double) = malloc(sizeof(double));
-	int 	(*ptr_to_int)	 = malloc(sizeof(int));
+	/* The global variable has not been initialized  with "static" specifier
+	 * is still localed in .data section 
+	 *
+	 * This condition is as same as initialized global variable */
+	static int *ptr_global_static = &global_static_data;
+	printf("address of global static : \t\t%p\n", ptr_global_static);
 
-	printf("ptr_to_double    : %p\n", ptr_to_double);
-	printf("ptr_to_double + 1: %p\n\n", ptr_to_double + 1);
+	static int data = 10;  // this is a static data, which has been initialized.
+	static int *ptr_static = &data;
+	printf("address of static data: \t\t%p\n", ptr_static);
 
-	printf("ptr_to_int     : %p\n", ptr_to_int);
-	printf("ptr_to_int + 1 : %p\n\n", ptr_to_int + 1);
+	
+	int *ptr_g_initialized = &initilized_var;
+	printf("address of initilized_var : \t\t%p\n", ptr_g_initialized);
 
-
-
-
-
-	/* 你覺得為什麼下面的情況 和上面不一樣？ 
-	 * 同樣的以記憶的的角度分析
-	 */
-	int32_t	array[10] = {};
-	int32_t *stackptr = array;
-
-	printf("stackptr    : %p\n", stackptr);
-	printf("stackptr + 1: %p\n\n", stackptr + 1);
-
-	for (int i = 0; i < 10; i++){
-		printf("address of array[%d] : %p\n", i, &array[i]);
-	}
-				
+	
+	/* string literal is localed in rodata, this section is lower than data section */
+	char *ptr_string = "hello";
+	printf("address of string literal : \t\t%p\n", ptr_string);
 
 
-	return 0;
-}	
+
+			
+}
